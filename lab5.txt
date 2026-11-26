@@ -1,0 +1,58 @@
+// GAUSS JORDAN METHOD
+
+// INPUT THE COEFFICIENT MATRIX AND RHS MATRIX
+
+A = input("Enter the coefficient matrix A: ");
+B = input("Enter the RHS matrix B: ");
+
+C = [A B];  // AUGMENTED MATRIX FORM
+
+disp("The given set of equations in augmented matrix form:");
+disp(C);
+
+mprintf("\n");
+
+// FORWARD ELIMINATION
+
+for i = 1:3
+    for j = i+1:3
+        M = C(j,i) / C(i,i);
+        C(j,:) = C(j,:) - (M * C(i,:));
+
+        disp(C);
+        mprintf("\n");
+    end
+end
+
+disp("Upper Triangular Matrix:");
+disp(C);
+
+mprintf("\n");
+
+// BACKWARD ELIMINATION
+
+for i = 3:-1:1
+    for j = i-1:-1:1
+        M = C(j,i) / C(i,i);
+        C(j,:) = C(j,:) - (M * C(i,:));
+
+        disp(C);
+        mprintf("\n");
+    end
+end
+
+disp("Diagonal Matrix:");
+disp(C);
+
+mprintf("\n");
+
+// CALCULATE THE SOLUTION MATRIX
+
+X = zeros(3,1);
+
+for i = 1:3
+    X(i) = C(i,4) / C(i,i);
+end
+
+disp("The solution matrix is:");
+disp(X);

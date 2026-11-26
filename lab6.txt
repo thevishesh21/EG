@@ -1,0 +1,63 @@
+// GAUSS JACOBI METHOD
+
+// INPUT COEFFICIENT MATRIX AND RHS MATRIX
+
+A = input("Enter the coefficient matrix A: ");
+B = input("Enter the RHS matrix B: ");
+
+disp("Coefficient Matrix A:");
+disp(A);
+
+disp("RHS Matrix B:");
+disp(B);
+
+// INITIAL GUESS
+
+x(1) = input("Enter initial value of x: ");
+y(1) = input("Enter initial value of y: ");
+
+disp("Initial Values:");
+disp(x(1));
+disp(y(1));
+
+// INITIAL ERROR
+
+errX = 1;
+errY = 1;
+tol = 0.0001;
+i = 1;
+
+printf("Sequence No.\tX\t\tY\n");
+
+// GAUSS JACOBI ITERATION
+
+while (errX > tol | errY > tol) do
+
+    x(i+1) = (1/A(1,1)) * (B(1) - A(1,2)*y(i));
+
+    y(i+1) = (1/A(2,2)) * (B(2) - A(2,1)*x(i));
+
+    printf("%d\t\t%f\t%f\n", i, x(i+1), y(i+1));
+
+    errX = abs(x(i+1) - x(i));
+    errY = abs(y(i+1) - y(i));
+
+    i = i + 1;
+
+end
+
+disp("The final solution is:");
+disp(x(i));
+disp(y(i));
+
+// PLOT THE ITERATION VALUES
+
+j = 1:i;
+
+subplot(1,2,1);
+plot2d(j, x(j));
+xtitle("X Iterations", "Iteration", "X");
+
+subplot(1,2,2);
+plot2d(j, y(j));
+xtitle("Y Iterations", "Iteration", "Y");

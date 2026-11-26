@@ -1,0 +1,34 @@
+// Numerical and Analytical Solution of ODE
+
+clc;
+clf();
+
+function ydot = f(t,B)
+    k = log(3)/2;
+    ydot = k*B;
+endfunction
+
+t0 = 0;
+b0 = 1;
+t = 0:0.01:5;
+
+Bdiff = ode(b0,t0,t,f);
+
+// Numerical Solution
+subplot(1,2,1)
+plot2d(t,Bdiff,style=color('red'))
+xlabel('time')
+ylabel('population')
+title('Numerical solution of ODE')
+
+// Analytical Solution
+k = log(3)/2;
+Bsol = b0*exp(k*t);
+
+subplot(1,2,2)
+plot2d(t,Bsol,style=color('green'))
+xlabel('time')
+ylabel('population')
+title('Analytical solution of ODE')
+
+

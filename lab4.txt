@@ -1,0 +1,41 @@
+// INPUT THE COEFFICIENT MATRIX AND RHS MATRIX
+
+A = input("Enter the coefficient matrix A: ");
+B = input("Enter the R.H.S. matrix B: ");
+
+C = [A B];  // AUGMENTED MATRIX FORM
+
+disp("The Given Set Of Equations In Augmented Matrix Form:");
+disp(C);
+
+// FORWARD ELIMINATION
+
+for i = 1:3
+    for j = i+1:3
+        M = C(j,i) / C(i,i);
+
+        for k = 1:4
+            C(j,k) = C(j,k) - (M * C(i,k));
+        end
+    end
+end
+
+disp("Upper Triangular Matrix:");
+disp(C);
+
+// BACK SUBSTITUTION
+
+X = zeros(3,1);
+
+for i = 3:-1:1
+    X(i) = C(i,4);
+
+    for j = i+1:3
+        X(i) = X(i) - C(i,j) * X(j);
+    end
+
+    X(i) = X(i) / C(i,i);
+end
+
+disp("The Solution Matrix is:");
+disp(X);

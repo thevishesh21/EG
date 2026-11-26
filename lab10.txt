@@ -1,0 +1,41 @@
+// Program to test Convergence/Divergence of a Series
+
+clc;
+
+N = input("Enter number of terms: ");
+
+n = 1:1:N;
+an = 1./n;  // nth term
+
+// Graph 1: nth Term
+subplot(2,2,1)
+plot2d(n,an)
+xlabel('n')
+ylabel('an (nth Term)')
+title('nth term')
+
+// Graph 2: D'Alembert Ratio Test
+ratio = n./(n+1);
+
+subplot(2,2,2)
+plot(n,ratio)
+xlabel('n')
+ylabel('Ratio: a(n+1)/a(n)')
+title('D Alembert Ratio Test')
+
+// Graph 3: Partial Sums
+s = 0;
+arr = zeros(1,N);
+
+for k = 1:1:N
+    s = s + (1/k);
+    arr(k) = s;
+end
+
+m = 1:1:N;
+
+subplot(2,2,3)
+plot2d(m,arr)
+xlabel('n')
+ylabel('Sn')
+title('Partial Sums')

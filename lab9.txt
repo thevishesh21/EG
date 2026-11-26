@@ -1,0 +1,22 @@
+// Eigen Values and Eigen Vectors
+
+clc;
+
+A = input("Enter matrix A: ");
+
+[X,lamda] = spec(A);
+
+// Eigen Values
+for i = 1:2
+    disp('Eigen value of the given matrix is:');
+    disp(lamda(i,i));
+end
+
+// Eigen Vectors
+for i = 1:2
+    disp('Eigen vector for eigen value '+string(lamda(i,i))+' is:');
+
+    for j = 1:2
+        disp(X(j,i));
+    end
+end

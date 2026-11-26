@@ -1,0 +1,39 @@
+// Cauchy's nth Root Test
+// Ques. 2
+
+clc;
+clf();
+
+N = input("Enter number of terms: ");
+
+function f = un(n) // Defining the nth term
+    f = ((n+1)/(2*n+5))^n;
+endfunction
+
+function f1 = unl(n) // Defining the nth root
+    f1 = un(n)^(1/n);
+endfunction
+
+i = 1:1:N;
+
+X = zeros(1,N);
+Y = zeros(1,N);
+
+for k = 1:1:N
+    X(k) = un(k);
+    Y(k) = unl(k);
+end
+
+// Graph 1: nth Term
+subplot(1,2,1)
+plot(i,X)
+xlabel('n')
+ylabel('an (nth Term)')
+title('nth term')
+
+// Graph 2: nth Root
+subplot(1,2,2)
+plot(i,Y)
+xlabel('n')
+ylabel('an^(1/n) (nth root)')
+title('nth root')
